@@ -18,12 +18,18 @@ class MetricsRequest(BaseModel):
     regions: list[str]
     threshold_ms: float
 
-# Correct DATA_PATH for your structure:
+# Update data path if q-vercel-latency.json is in repo root
 DATA_PATH = Path(__file__).parent.parent / "q-vercel-latency.json"
 
 with open(DATA_PATH) as f:
     telemetry_data = json.load(f)
 
+# Root GET endpoint for basic health check
+@app.get("/")
+async def root():
+    return {"message": "FastAPI server is running"}
+
+# POST /metrics endpoint as required
 @app.post("/metrics")
 async def metrics_endpoint(req: MetricsRequest):
     response = {}
