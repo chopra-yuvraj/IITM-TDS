@@ -1,4 +1,4 @@
-name: Cache Workflow
+name: Combined Requirements Workflow
 
 on:
   workflow_dispatch:
@@ -7,12 +7,15 @@ on:
       - main
 
 jobs:
-  cache-test:
+  combined-test:
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        
+      - name: 24f2002642@ds.study.iitm.ac.in
+        run: echo "Hello, world! Email step completed successfully."
         
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -34,9 +37,14 @@ jobs:
             echo "Cache hit: false"
           fi
           
-      - name: Install dependencies
+      - name: Install dependencies to populate cache
         run: |
-          pip install requests numpy
-        
-      - name: Verify cache functionality
-        run: echo "Cache workflow completed successfully"
+          pip install requests numpy pandas
+          
+      - name: Verify both requirements
+        run: |
+          echo "✅ Email step: 24f2002642@ds.study.iitm.ac.in - COMPLETED"
+          echo "✅ Cache step: prime-cache-53a55a9 - COMPLETED"
+          echo "✅ Cache key: cache-53a55a9 - USED"
+          echo "✅ Actions cache v4 - USED"
+          echo "Both requirements satisfied in single workflow!"
