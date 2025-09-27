@@ -1,14 +1,21 @@
-name: Email Step Example
+name: Email Step Workflow
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
-  test:
+  email-test:
     runs-on: ubuntu-latest
-
+    
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
       - name: 24f2002642@ds.study.iitm.ac.in
-        run: echo "Hello, this is a named step!"
+        run: echo "Hello, world! This step contains the required email address."
+        
+      - name: Additional step
+        run: echo "Email workflow completed successfully"
