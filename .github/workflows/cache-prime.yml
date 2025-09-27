@@ -1,4 +1,4 @@
-name: Test Workflow
+name: Final Combined Workflow
 
 on:
   workflow_dispatch:
@@ -7,5 +7,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: 24f2002642@ds.study.iitm.ac.in
+        run: echo "Email step working"
+        
       - name: prime-cache-53a55a9
-        run: echo "This should work"
+        run: echo "Cache step working"
+        
+      - name: Setup cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: cache-53a55a9
