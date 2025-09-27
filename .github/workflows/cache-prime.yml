@@ -1,4 +1,4 @@
-name: Cache Prime Workflow
+name: Combined Email and Cache Workflow
 
 on:
   workflow_dispatch:
@@ -7,12 +7,15 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        
+      - name: 24f2002642@ds.study.iitm.ac.in
+        run: echo "Hello, world! This step contains the required email address."
         
       - name: Setup Python
         uses: actions/setup-python@v4
