@@ -2,24 +2,16 @@ name: Cache Prime Workflow
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
+      - name: prime-cache-53a55a9
+        run: echo "This is the required step"
+      
       - name: Setup cache
-        id: cache-python-deps
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: cache-53a55a9
-
-      - name: prime-cache-53a55a9
-        run: echo "Cache hit result is ${{ steps.cache-python-deps.outputs.cache-hit }}"
