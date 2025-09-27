@@ -18,7 +18,8 @@ class MetricsRequest(BaseModel):
     regions: list[str]
     threshold_ms: float
 
-DATA_PATH = Path(__file__).parent / "q-vercel-latency.json"
+# Updated path to go up one directory, then to the JSON file
+DATA_PATH = Path(__file__).parent.parent / "q-vercel-latency.json"
 
 with open(DATA_PATH) as f:
     telemetry_data = json.load(f)
