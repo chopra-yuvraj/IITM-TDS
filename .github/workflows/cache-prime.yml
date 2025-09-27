@@ -22,4 +22,9 @@ jobs:
           key: cache-53a55a9
 
       - name: prime-cache-53a55a9
-        run: echo "Cache status: ${{ steps.cache-python-deps.outputs.cache-hit }}"
+        run: |
+          if [ "${{ steps.cache-python-deps.outputs.cache-hit }}" == 'true' ]; then
+            echo "Cache status: hit"
+          else
+            echo "Cache status: miss"
+          fi
