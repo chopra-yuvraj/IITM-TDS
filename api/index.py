@@ -4,6 +4,7 @@ from pydantic import BaseModel
 import numpy as np
 import json
 from pathlib import Path
+import os
 
 app = FastAPI()
 
@@ -18,18 +19,22 @@ class MetricsRequest(BaseModel):
     regions: list[str]
     threshold_ms: float
 
-# Update data path if q-vercel-latency.json is in repo root
+# Updated path for telemetry JSON (file at root level)
 DATA_PATH = Path(__file__).parent.parent / "q-vercel-latency.json"
+
+# Debug prints to verify environment during deployment
+print("Current working directory:", os.getcwd())
+print("File __file__ location:", __file__)
+print("Telemetry JSON file path:", DATA_PATH)
+print("Telemetry JSON exists:", DATA_PATH.exists())
 
 with open(DATA_PATH) as f:
     telemetry_data = json.load(f)
 
-# Root GET endpoint for basic health check
 @app.get("/")
 async def root():
-    return {"message": "FastAPI server is running"}
+    return {"message": "FastAPI server running"}
 
-# POST /metrics endpoint as required
 @app.post("/metrics")
 async def metrics_endpoint(req: MetricsRequest):
     response = {}
