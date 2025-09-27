@@ -18,7 +18,7 @@ class MetricsRequest(BaseModel):
     regions: list[str]
     threshold_ms: float
 
-# Updated path to go up one directory, then to the JSON file
+# Correct DATA_PATH for your structure:
 DATA_PATH = Path(__file__).parent.parent / "q-vercel-latency.json"
 
 with open(DATA_PATH) as f:
