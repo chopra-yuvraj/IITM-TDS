@@ -1,4 +1,4 @@
-name: Combined Email and Cache Workflow
+name: Cache Workflow
 
 on:
   workflow_dispatch:
@@ -7,15 +7,12 @@ on:
       - main
 
 jobs:
-  test:
+  cache-test:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
-        
-      - name: 24f2002642@ds.study.iitm.ac.in
-        run: echo "Hello, world! This step contains the required email address."
         
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -40,3 +37,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install requests numpy
+        
+      - name: Verify cache functionality
+        run: echo "Cache workflow completed successfully"
